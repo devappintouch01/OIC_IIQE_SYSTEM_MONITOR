@@ -36,7 +36,7 @@ async function handleWebsiteDown(errorMessage: string): Promise<void> {
     if (lastStatus !== false) {
         await sendMessage(errorMessage);
     }
-    lastStatus = false;
+    lastStatus = true;
 }
 
 async function sendMessage(message: string): Promise<void> {
