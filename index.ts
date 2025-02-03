@@ -19,15 +19,16 @@ async function checkWebsite(): Promise<void> {
         if (response.status === 200) {
             const now = Date.now();
             if (lastStatus !== true || now - lastSuccessNotify >= NOTIFY_INTERVAL) {
-                await sendMessage(`${formattedDate} เว็บไซต์ ${CHECK_URL} ใช้งานได้ปกติ ✅`);
+                await sendMessage(`${formattedDate},เว็บไซต์ ${CHECK_URL} ใช้งานได้ปกติ ✅`);
                 lastSuccessNotify = now;
             }
             lastStatus = true;
         } else {
-            await handleWebsiteDown(`${formattedDate} เว็บไซต์ ${CHECK_URL} ใช้งานไม่ได้ ⚠️`);
+            await handleWebsiteDown(`${formattedDate},เว็บไซต์ ${CHECK_URL} ใช้งานไม่ได้ ⚠️`);
         }
     } catch (error: any) {
-        await handleWebsiteDown(`${formattedDate} ไม่สามารถเข้าถึงเว็บไซต์ ${CHECK_URL} ❌`);
+        console.log("✅ ส่งข้อความสำเร็จ:", error.message);
+        await handleWebsiteDown(`${formattedDate},ไม่สามารถเข้าถึงเว็บไซต์ ${CHECK_URL} ❌`);
     }
 }
 
