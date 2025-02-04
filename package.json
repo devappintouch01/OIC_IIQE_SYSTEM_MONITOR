@@ -9,6 +9,7 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
+    "@vercel/node": "^5.1.0",
     "axios": "^1.7.9"
   }
 }
