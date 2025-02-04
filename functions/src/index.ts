@@ -33,16 +33,16 @@ async function checkWebsite(): Promise<void> {
         if (response.status === 200) {
             const now = Date.now();
             if (lastStatus !== true || now - lastSuccessNotify >= NOTIFY_INTERVAL) {
-                await sendMessage(`${formattedDate}[INF]เว็บไซต์ ${CHECK_URL} ใช้งานได้ปกติ 🟢`);
+                await sendMessage(`${formattedDate} [INF] เว็บไซต์ ${CHECK_URL} ใช้งานได้ปกติ 🟢`);
                 lastSuccessNotify = now;
             }
             lastStatus = true;
         } else {
-            await handleWebsiteDown(`${formattedDate}[ERR]เว็บไซต์ ${CHECK_URL} ใช้งานไม่ได้ 🟡`);
+            await handleWebsiteDown(`${formattedDate} [ERR] เว็บไซต์ ${CHECK_URL} ใช้งานไม่ได้ 🟡`);
         }
     } catch (error: any) {
         console.error("🚨 ตรวจสอบเว็บไซต์ล้มเหลว:", error.message);
-        await handleWebsiteDown(`${formattedDate}[ERR]ไม่สามารถเข้าเว็บไซต์ ${CHECK_URL} 🔴`);
+        await handleWebsiteDown(`${formattedDate} [ERR] ไม่สามารถเข้าเว็บไซต์ ${CHECK_URL} 🔴`);
     }
 }
 
@@ -71,9 +71,9 @@ async function sendMessage(message: string): Promise<void> {
 
 async function sendHeartbeat(): Promise<void> {
     const now = getDate();
-    sendMessage(`${now}[INF]🐱 แมวยังทำงานอยู่นะ`);
+    sendMessage(`${now} [INF] 🐱 แมวยังทำงานอยู่นะ`);
 }
 
-sendMessage(`${getDate()}[INF]🐱 แมวเริ่มทำงาน !`);
+sendMessage(`${getDate()} [INF] 🐱 แมวเริ่มทำงาน !`);
 setInterval(checkWebsite, CHECK_INTERVAL);
 setInterval(sendHeartbeat, HEARTBEAT_INTERVAL);
