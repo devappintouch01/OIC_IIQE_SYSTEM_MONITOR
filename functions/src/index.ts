@@ -42,7 +42,7 @@ async function checkWebsite(): Promise<void> {
         }
     } catch (error: any) {
         console.error("🚨 ตรวจสอบเว็บไซต์ล้มเหลว:", error.message);
-        await handleWebsiteDown(`${formattedDate}[ERR]เว็บไซต์ ${CHECK_URL} ไม่สามารถเข้าถึง 🔴`);
+        await handleWebsiteDown(`${formattedDate}[ERR]ไม่สามารถเข้าเว็บไซต์ ${CHECK_URL} 🔴`);
     }
 }
 
